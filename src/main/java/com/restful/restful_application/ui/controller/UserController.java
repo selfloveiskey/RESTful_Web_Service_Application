@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
 @RequestMapping("users") //http://localhost:8080/users
-// Responsible for all operations that have to do with user
+//-| -------------------------------------------------------------
+//-| Responsible for all operations that have to do with the user
+//-| -------------------------------------------------------------
 public class UserController
 {
     @GetMapping
