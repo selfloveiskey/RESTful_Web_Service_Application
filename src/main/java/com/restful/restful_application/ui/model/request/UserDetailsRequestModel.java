@@ -1,9 +1,9 @@
 package com.restful.restful_application.ui.model.request;
 
 /*
--|--------------------------------------------------------
--| Converts incoming JSON payload body into a Java object
--|--------------------------------------------------------
+|--------------------------------------------------------
+| Converts incoming JSON payload body into a Java object
+|--------------------------------------------------------
 */
 public class UserDetailsRequestModel {
     private String firstName;

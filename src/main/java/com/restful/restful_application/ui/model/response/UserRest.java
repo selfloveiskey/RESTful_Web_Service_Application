@@ -1,9 +1,9 @@
 package com.restful.restful_application.ui.model.response;
 
 /*
--|--------------------------------------------------------
--| Converts outgoing Java object to outgoing JSON response
--|--------------------------------------------------------
+|--------------------------------------------------------
+| Converts outgoing Java object to outgoing JSON response
+|--------------------------------------------------------
 */
 public class UserRest {
     private String userId;

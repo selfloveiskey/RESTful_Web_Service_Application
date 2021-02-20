@@ -7,14 +7,13 @@ import com.restful.restful_application.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+/*
+|-------------------------------------------------------------
+| Responsible for all operations that have to do with the user
+|-------------------------------------------------------------
+*/
 @RestController
 @RequestMapping("users") //http://localhost:8080/users
-/*
-//-|-------------------------------------------------------------
-//-| Responsible for all operations that have to do with the user
-//-|-------------------------------------------------------------
-*/
 public class UserController {
     @Autowired
     UserService userService;
@@ -28,12 +27,16 @@ public class UserController {
     public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails){
         UserRest returnValue = new UserRest();
 
+        // Copy info from userDetails into userDto
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userDetails, userDto);
 
+        // Use userDto to create a new user
+        // then copy the new user info from createdUser to returnValue
         UserDto createdUser = userService.createUser(userDto);
         BeanUtils.copyProperties(createdUser, returnValue);
 
+        // Returns as an outgoing JSON response
         return returnValue;
     }
 
