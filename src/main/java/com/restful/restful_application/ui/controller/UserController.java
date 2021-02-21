@@ -27,16 +27,28 @@ public class UserController {
     public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails){
         UserRest returnValue = new UserRest();
 
-        // Copy info from userDetails into userDto
+        /*
+        |----------------------------------------
+        | Copy info from userDetails into userDto
+        |----------------------------------------
+        */
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userDetails, userDto);
 
-        // Use userDto to create a new user
-        // then copy the new user info from createdUser to returnValue
+        /*
+        |--------------------------------------------------------------
+        | Use userDto to create a new user
+        | then copy the new user info from createdUser to returnValue
+        |--------------------------------------------------------------
+        */
         UserDto createdUser = userService.createUser(userDto);
         BeanUtils.copyProperties(createdUser, returnValue);
 
-        // Returns as an outgoing JSON response
+        /*
+        |----------------------------------------
+        | Returns as an outgoing JSON response
+        |----------------------------------------
+        */
         return returnValue;
     }
 
