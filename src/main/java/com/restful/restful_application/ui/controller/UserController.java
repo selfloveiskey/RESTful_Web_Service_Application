@@ -6,6 +6,7 @@ import com.restful.restful_application.ui.model.request.UserDetailsRequestModel;
 import com.restful.restful_application.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 /*
 |-------------------------------------------------------------
@@ -18,7 +19,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping(path = "/{id}")
+    /*
+    |-------------------------------------------------------------------------
+    | produces = {}
+    |  - Order of media types matter if you have more than one listed
+    |  - Will return XML or JSON.
+    |  - Will return XML first if it can b/c of the order they are listed in
+    |-------------------------------------------------------------------------
+    */
+    @GetMapping(path = "/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public UserRest getUser(@PathVariable String id){
         UserRest returnValue = new UserRest();
 
@@ -28,7 +37,14 @@ public class UserController {
         return returnValue;
     }
 
-    @PostMapping
+    /*
+    |-------------------------------------------------------------------------
+    | consumes = Can consume information in either XML or JSON
+    | produces = Can respond back with either XML or JSON
+    |-------------------------------------------------------------------------
+    */
+    @PostMapping(consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE },
+                 produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails){
         UserRest returnValue = new UserRest();
 
