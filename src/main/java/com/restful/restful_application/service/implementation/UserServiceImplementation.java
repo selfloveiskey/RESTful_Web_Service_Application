@@ -15,6 +15,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+/*
+|------------------------------------------------------------------------------------
+| Uses the UserEntity object from UserRepository (the database) in the methods below
+| which is performing some type of action using the database
+|------------------------------------------------------------------------------------
+*/
 @Service
 public class UserServiceImplementation implements UserService {
 
@@ -60,6 +66,20 @@ public class UserServiceImplementation implements UserService {
         }
         UserDto returnValue = new UserDto();
         BeanUtils.copyProperties(userEntity, returnValue);
+        return returnValue;
+    }
+
+    @Override
+    public UserDto getUserByUserId(String userId) {
+        UserDto returnValue = new UserDto();
+        UserEntity userEntity = userRepository.findByUserId(userId);
+
+        if(userEntity == null){
+            throw new UsernameNotFoundException(userId);
+        }
+
+        BeanUtils.copyProperties(userEntity, returnValue);
+
         return returnValue;
     }
 
